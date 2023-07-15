@@ -1,0 +1,30 @@
+services:
+  api:
+    build:
+      context: api
+      dockerfile: Dockerfile
+    volumes:
+      - ./api/:/app
+    ports:
+      - 3000:80
+
+  frontend:
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    volumes:
+      - ./frontend/:/app/frontend
+    ports:
+      - 3001:81
+
+  redis:
+    image: redislabs/redismod
+    ports:
+      - 6379:6379
+
+
+  redisinsight:
+    image: redislabs/redisinsight:latest
+    ports:
+      - "8001:8001"
+
